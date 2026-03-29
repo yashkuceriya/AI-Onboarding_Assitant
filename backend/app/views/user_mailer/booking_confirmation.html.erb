@@ -1,0 +1,46 @@
+<h1 style="margin: 0 0 8px; font-size: 24px; font-weight: 800; color: #111827;">Delivery Confirmed!</h1>
+<p style="margin: 0 0 24px; color: #6b7280; font-size: 15px; line-height: 1.6;">
+  Hey <%= @user.name %>, your delivery is all set. Here are your details:
+</p>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+  <tr>
+    <td style="background-color: #ecfdf5; border: 1px solid #d1fae5; padding: 20px; border-radius: 12px;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="50%" style="padding: 8px 0;">
+            <p style="margin: 0 0 2px; font-size: 11px; color: #9ca3af; text-transform: uppercase; font-weight: 600;">Date</p>
+            <p style="margin: 0; font-size: 16px; color: #111827; font-weight: 700;"><%= @appointment.scheduled_date.strftime('%A, %B %d, %Y') %></p>
+          </td>
+          <td width="50%" style="padding: 8px 0;">
+            <p style="margin: 0 0 2px; font-size: 11px; color: #9ca3af; text-transform: uppercase; font-weight: 600;">Time</p>
+            <p style="margin: 0; font-size: 16px; color: #111827; font-weight: 700;"><%= @appointment.scheduled_time.strftime('%I:%M %p') %></p>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" style="padding: 8px 0;">
+            <p style="margin: 0 0 2px; font-size: 11px; color: #9ca3af; text-transform: uppercase; font-weight: 600;">Confirmation #</p>
+            <p style="margin: 0; font-size: 16px; color: #111827; font-weight: 700;">CRV-<%= @appointment.id.to_s.rjust(6, '0') %></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<h3 style="margin: 0 0 12px; font-size: 15px; font-weight: 700; color: #111827;">What to have ready:</h3>
+<ul style="margin: 0 0 24px; padding-left: 20px; color: #6b7280; font-size: 14px; line-height: 1.8;">
+  <li>Valid driver's license (matching your uploaded ID)</li>
+  <li>Proof of insurance (active coverage)</li>
+  <li>Be at your delivery address during the time window</li>
+</ul>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+  <tr>
+    <td style="background-color: #e0f7fc; padding: 14px 16px; border-radius: 12px;">
+      <p style="margin: 0; font-size: 13px; color: #0090b3;">
+        <strong>Remember:</strong> You have 7 days and 400 miles to make sure you love your car. If not, return it free.
+      </p>
+    </td>
+  </tr>
+</table>
