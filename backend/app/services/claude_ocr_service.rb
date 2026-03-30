@@ -54,7 +54,7 @@ class ClaudeOcrService
     )
 
     log_usage(result)
-    parsed = JSON.parse(result.content)
+    parsed = parse_json_payload(result.content)
 
     extracted_data = {}
     confidence_scores = {}
@@ -93,5 +93,16 @@ class ClaudeOcrService
       "output_tokens=#{result.output_tokens} " \
       "cost=$#{'%.6f' % result.estimated_cost}"
     )
+  end
+
+  def parse_json_payload(content)
+    text = content.to_s.strip
+    raise JSON::ParserError, "empty OCR response" if text.empty?
+
+    if text.start_with?("```")
+      text = text.sub(/\A```(?:json)?\s*/i, "").sub(/\s*```\z/, "").strip
+    end
+
+    JSON.parse(text)
   end
 end

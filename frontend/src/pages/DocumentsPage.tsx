@@ -33,7 +33,14 @@ export default function DocumentsPage({ onComplete }: DocumentsPageProps) {
       setDocument(result);
       setEditableData(result.extracted_data || {});
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Upload failed. Please try again.');
+      const message = err instanceof Error ? err.message : 'Upload failed. Please try again.';
+      if (message.includes('Missing OPENROUTER_API_KEY')) {
+        setError('AI OCR is not configured. Set OPENROUTER_API_KEY in backend/.env and restart Rails.');
+      } else if (message.includes('OpenRouter request failed')) {
+        setError('Document OCR failed. Try a clearer JPG/PNG/PDF, or verify your OPENROUTER_API_KEY.');
+      } else {
+        setError(message);
+      }
     } finally {
       setScanning(false);
     }

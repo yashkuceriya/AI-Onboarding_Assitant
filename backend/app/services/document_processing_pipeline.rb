@@ -72,7 +72,7 @@ class DocumentProcessingPipeline
       max_tokens: 1024
     )
 
-    parsed = JSON.parse(result.content)
+    parsed = parse_json_payload(result.content)
 
     extracted_data = {}
     confidence_scores = {}
@@ -127,5 +127,17 @@ class DocumentProcessingPipeline
 
   def flag_low_confidence_fields(scores)
     scores.select { |_, v| v < CONFIDENCE_THRESHOLDS[:flag_for_review] }.keys
+  end
+
+  def parse_json_payload(content)
+    text = content.to_s.strip
+    raise JSON::ParserError, "empty OCR response" if text.empty?
+
+    if text.start_with?("```")
+      # Accept fenced model output like ```json { ... } ```
+      text = text.sub(/\A```(?:json)?\s*/i, "").sub(/\s*```\z/, "").strip
+    end
+
+    JSON.parse(text)
   end
 end

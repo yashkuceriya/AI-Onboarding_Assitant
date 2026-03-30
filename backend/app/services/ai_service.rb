@@ -150,7 +150,19 @@ class AiService
 
     request.body = body.to_json
     response = http.request(request)
-    JSON.parse(response.body)
+    result = JSON.parse(response.body)
+
+    unless response.is_a?(Net::HTTPSuccess)
+      error_message = result["error"].is_a?(Hash) ? result["error"]["message"] : result["error"]
+      raise "OpenRouter request failed (#{response.code}): #{error_message || response.body}"
+    end
+
+    if result["choices"].blank?
+      error_message = result["error"].is_a?(Hash) ? result["error"]["message"] : result["error"]
+      raise "OpenRouter returned no choices: #{error_message || result.inspect}"
+    end
+
+    result
   end
 
   def parse_result(result, model_id)
@@ -166,6 +178,8 @@ class AiService
   end
 
   def api_key
-    ENV["OPENROUTER_API_KEY"]
+    key = ENV["OPENROUTER_API_KEY"].presence || ENV["ANTHROPIC_API_KEY"].presence
+    raise "Missing OPENROUTER_API_KEY (or ANTHROPIC_API_KEY fallback) in environment" if key.blank?
+    key
   end
 end

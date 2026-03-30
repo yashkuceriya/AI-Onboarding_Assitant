@@ -1,4 +1,10 @@
-const API_BASE = '/api/v1';
+function apiBase(): string {
+  const raw = import.meta.env.VITE_API_BASE;
+  if (typeof raw === 'string' && raw.trim() !== '') {
+    return raw.replace(/\/$/, '');
+  }
+  return '/api/v1';
+}
 
 function getToken(): string | null {
   return localStorage.getItem('auth_token');
@@ -16,7 +22,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 
   let res: Response;
   try {
-    res = await fetch(`${API_BASE}${path}`, { ...options, headers });
+    res = await fetch(`${apiBase()}${path}`, { ...options, headers });
   } catch {
     throw new Error('Network error. Please check your connection.');
   }
@@ -44,7 +50,7 @@ async function uploadFile<T>(path: string, formData: FormData): Promise<T> {
 
   let res: Response;
   try {
-    res = await fetch(`${API_BASE}${path}`, {
+    res = await fetch(`${apiBase()}${path}`, {
       method: 'POST',
       headers,
       body: formData,

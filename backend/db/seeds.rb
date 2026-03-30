@@ -144,6 +144,7 @@ end
 puts "Created #{ChecklistItem.count} checklist items"
 
 # Vehicle Inventory
+Favorite.delete_all
 Vehicle.delete_all
 
 vehicles_data = [
