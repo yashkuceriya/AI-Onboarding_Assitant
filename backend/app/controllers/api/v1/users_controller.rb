@@ -15,7 +15,7 @@ module Api
 
       def update
         if current_user.update(user_params)
-          render json: { user: current_user.as_json(except: [:password_digest]) }
+          render json: { user: current_user.as_json(except: [:password_digest, :password_reset_token, :password_reset_sent_at, :session_data]) }
         else
           render json: { errors: current_user.errors.full_messages }, status: :unprocessable_entity
         end

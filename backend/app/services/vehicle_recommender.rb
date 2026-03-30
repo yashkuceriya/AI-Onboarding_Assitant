@@ -65,9 +65,9 @@ class VehicleRecommender
     # Use real database vehicles instead of static sample
     db_vehicles = Vehicle.available.map do |v|
       {
-        id: v.id, make: v.make, model: v.model, year: v.year, price: v.price,
-        mpg: v.mpg, safety_rating: v.safety_rating, type: v.body_type,
-        color: v.color, mileage: v.mileage,
+        id: v.id, make: v.make, model: v.model, year: v.year, price: v.price.to_f,
+        mpg: v.mpg.to_i, safety_rating: v.safety_rating.to_f, type: v.body_type,
+        color: v.color, mileage: v.mileage.to_i,
         features: v.features || [],
         image_gradient: v.image_gradient || ["#64748b", "#475569"],
         image_url: v.image_url

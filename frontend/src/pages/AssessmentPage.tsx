@@ -60,7 +60,14 @@ export default function AssessmentPage({ onComplete }: AssessmentPageProps) {
     try {
       await api.completeConversation(conversation.id);
       const results = await api.getVehicleRecommendations({ budget: 40000 });
-      setVehicles(results);
+      setVehicles(results.map((v: VehicleRecommendation) => ({
+        ...v,
+        price: Number(v.price) || 0,
+        match_score: Number(v.match_score) || 0,
+        safety_rating: Number(v.safety_rating) || 0,
+        mileage: Number(v.mileage) || 0,
+        mpg: Number(v.mpg) || 0,
+      })));
       setPhase('matches');
     } catch {
       setError('Failed to load matches. Try again.');

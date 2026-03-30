@@ -14,7 +14,7 @@ function CarCard({ vehicle, index }: { vehicle: VehicleRecommendation; index: nu
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
-      className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
+      className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-md transition-shadow"
     >
       {/* Car visual */}
       <VehicleImage
@@ -34,7 +34,7 @@ function CarCard({ vehicle, index }: { vehicle: VehicleRecommendation; index: nu
       <div className="p-3 space-y-2">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <div className="text-sm font-bold text-gray-900">
+            <div className="text-sm font-bold text-gray-900 dark:text-white">
               {vehicle.year} {vehicle.make} {vehicle.model}
             </div>
             <div className="text-lg font-extrabold text-[#00aed9]">{fmt(vehicle.price)}</div>
@@ -86,7 +86,13 @@ export default function VehicleRecommendations() {
         type: vehicleType || undefined,
         priorities: priorities.length > 0 ? priorities : undefined,
       });
-      setRecommendations(results);
+      // Normalize price/match_score from string to number (Postgres decimals come as strings)
+      setRecommendations(results.map((v: VehicleRecommendation) => ({
+        ...v,
+        price: typeof v.price === 'string' ? parseFloat(v.price) : v.price,
+        match_score: typeof v.match_score === 'string' ? parseFloat(v.match_score) : v.match_score,
+        safety_rating: typeof v.safety_rating === 'string' ? parseFloat(v.safety_rating) : v.safety_rating,
+      })));
     } catch (e) {
       console.error(e);
     } finally {
@@ -98,9 +104,9 @@ export default function VehicleRecommendations() {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white border border-gray-200 rounded-xl overflow-hidden"
+      className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden"
     >
-      <div className="bg-[#1b3a5c] text-white px-4 py-3 font-bold text-sm flex items-center gap-2">
+      <div className="bg-gradient-to-r from-[#1b3a5c] to-[#234a6e] text-white px-4 py-3 font-bold text-sm flex items-center gap-2">
         <Car size={18} />
         Vehicle Finder
       </div>
@@ -109,7 +115,7 @@ export default function VehicleRecommendations() {
         {/* Budget */}
         <div>
           <div className="flex justify-between text-sm mb-1">
-            <span className="text-gray-600 font-medium">Budget</span>
+            <span className="text-gray-600 dark:text-gray-400 font-medium">Budget</span>
             <span className="font-bold text-gray-900">{fmt(budget)}</span>
           </div>
           <input
@@ -124,7 +130,7 @@ export default function VehicleRecommendations() {
 
         {/* Type */}
         <div>
-          <div className="text-sm text-gray-600 font-medium mb-2">Type</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-2">Type</div>
           <div className="flex flex-wrap gap-1.5">
             {['sedan', 'suv', 'truck', 'wagon'].map(t => (
               <button
@@ -133,7 +139,7 @@ export default function VehicleRecommendations() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
                   vehicleType === t
                     ? 'bg-[#00aed9] text-white shadow-sm'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 {t.charAt(0).toUpperCase() + t.slice(1)}
@@ -144,7 +150,7 @@ export default function VehicleRecommendations() {
 
         {/* Priorities */}
         <div>
-          <div className="text-sm text-gray-600 font-medium mb-2">I care about</div>
+          <div className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-2">I care about</div>
           <div className="flex flex-wrap gap-1.5">
             {[
               { key: 'fuel_efficiency', label: 'Fuel Economy', icon: <Fuel size={12} /> },
@@ -156,7 +162,7 @@ export default function VehicleRecommendations() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1 ${
                   priorities.includes(p.key)
                     ? 'bg-[#00aed9] text-white shadow-sm'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600'
                 }`}
               >
                 {p.icon} {p.label}
@@ -185,7 +191,7 @@ export default function VehicleRecommendations() {
               animate={{ opacity: 1, height: 'auto' }}
               className="space-y-3 overflow-hidden"
             >
-              <div className="text-xs text-gray-500 font-medium">
+              <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                 {recommendations.length} vehicles found
               </div>
               {recommendations.map((v, i) => (
@@ -196,7 +202,7 @@ export default function VehicleRecommendations() {
         </AnimatePresence>
 
         {searched && recommendations.length === 0 && !loading && (
-          <div className="text-center text-sm text-gray-400 py-4">
+          <div className="text-center text-sm text-gray-400 dark:text-gray-500 py-4">
             No vehicles match your criteria. Try adjusting your budget or type.
           </div>
         )}

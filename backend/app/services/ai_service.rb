@@ -95,20 +95,20 @@ class AiService
     result.dig("data", 0, "embedding")
   end
 
-  def vision(image_data:, media_type:, prompt:, model: :vision, max_tokens: 1024)
+  def vision(image_data:, media_type:, prompt:, system: nil, model: :vision, max_tokens: 1024)
     model_id = resolve_model(model)
-    messages = [
-      {
-        role: "user",
-        content: [
-          {
-            type: "image_url",
-            image_url: { url: "data:#{media_type};base64,#{image_data}" }
-          },
-          { type: "text", text: prompt }
-        ]
-      }
-    ]
+    messages = []
+    messages << { role: "system", content: system } if system
+    messages << {
+      role: "user",
+      content: [
+        {
+          type: "image_url",
+          image_url: { url: "data:#{media_type};base64,#{image_data}" }
+        },
+        { type: "text", text: prompt }
+      ]
+    }
     result = call_openrouter(model_id, messages, max_tokens, temperature: 0.1)
     parse_result(result, model_id)
   end

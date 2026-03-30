@@ -49,6 +49,7 @@ class ClaudeOcrService
       image_data: base64_image,
       media_type: media_type,
       prompt: "Extract all data from this document.",
+      system: EXTRACTION_PROMPT,
       model: :vision,
       max_tokens: 1024
     )

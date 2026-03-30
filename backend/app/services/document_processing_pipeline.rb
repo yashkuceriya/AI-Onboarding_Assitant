@@ -68,6 +68,7 @@ class DocumentProcessingPipeline
       image_data: base64_image,
       media_type: media_type,
       prompt: prompt,
+      system: EXTRACTION_PROMPT,
       model: doc_config[:model],
       max_tokens: 1024
     )

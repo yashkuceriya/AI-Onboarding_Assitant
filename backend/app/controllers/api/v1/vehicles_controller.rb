@@ -46,7 +46,7 @@ module Api
         similar = Vehicle.available
                          .where(body_type: vehicle.body_type)
                          .where.not(id: vehicle.id)
-                         .order("ABS(price - #{vehicle.price.to_f})")
+                         .order(Arel.sql("ABS(price - #{vehicle.price.to_f})"))
                          .limit(4)
 
         render json: {

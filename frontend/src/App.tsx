@@ -420,6 +420,10 @@ function VehicleDetailRoute({ navigate }: {
 }) {
   const { id } = useParams();
   const vehicleId = Number(id);
+  if (!vehicleId || isNaN(vehicleId)) {
+    navigate('/inventory');
+    return null;
+  }
   return (
     <VehicleDetailPage
       vehicleId={vehicleId}

@@ -195,7 +195,7 @@ function TimelineStep({
 
 function DeliveryCard({ delivery }: { delivery: Delivery }) {
   const { vehicle, timeline } = delivery;
-  const [gradFrom, gradTo] = vehicle.image_gradient;
+  const [gradFrom, gradTo] = vehicle.image_gradient || ['#64748b', '#475569'];
 
   return (
     <motion.div
