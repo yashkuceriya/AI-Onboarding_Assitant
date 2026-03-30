@@ -56,7 +56,7 @@ module Api
         end
 
         conversation.update!(status: :complete, summary: profile)
-        current_user.update!(profile_data: current_user.profile_data.merge(profile), onboarding_step: :documents)
+        current_user.update!(profile_data: (current_user.profile_data || {}).merge(profile), onboarding_step: :documents)
 
         EventBus.publish("onboarding.step_changed", {
           user_id: current_user.id,

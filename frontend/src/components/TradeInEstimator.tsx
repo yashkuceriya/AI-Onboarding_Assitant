@@ -145,7 +145,7 @@ export default function TradeInEstimator() {
               </div>
               <div className="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2">
                 <div className="text-[9px] text-gray-400 uppercase font-semibold">Mile Adj.</div>
-                <div className="text-sm font-bold text-gray-800 dark:text-white">-{fmt(result.factors.mileage_penalty)}</div>
+                <div className="text-sm font-bold text-gray-800 dark:text-white">{result.factors.mileage_penalty > 0 ? `-${fmt(result.factors.mileage_penalty)}` : fmt(0)}</div>
               </div>
             </div>
             <p className="text-[11px] text-gray-400 dark:text-gray-500 text-center">

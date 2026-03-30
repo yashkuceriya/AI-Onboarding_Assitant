@@ -43,15 +43,19 @@ export default function DashboardPage({ userName }: Props) {
     if (!data) return;
     try {
       const result = await api.toggleChecklist(item.id);
-      setData({
-        ...data,
-        checklist: data.checklist.map(c =>
+      setData(prev => {
+        if (!prev) return prev;
+        const updatedChecklist = prev.checklist.map(c =>
           c.id === item.id ? { ...c, completed: result.completed, completed_at: result.completed_at } : c
-        ),
-        progress: {
-          ...data.progress,
-          checklist_completed: data.progress.checklist_completed + (result.completed ? 1 : -1),
-        },
+        );
+        return {
+          ...prev,
+          checklist: updatedChecklist,
+          progress: {
+            ...prev.progress,
+            checklist_completed: updatedChecklist.filter(c => c.completed).length,
+          },
+        };
       });
     } catch (e) {
       console.error(e);

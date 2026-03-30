@@ -116,7 +116,7 @@ export default function VehicleRecommendations() {
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-gray-600 dark:text-gray-400 font-medium">Budget</span>
-            <span className="font-bold text-gray-900">{fmt(budget)}</span>
+            <span className="font-bold text-gray-900 dark:text-white">{fmt(budget)}</span>
           </div>
           <input
             type="range" min={10000} max={80000} step={1000}

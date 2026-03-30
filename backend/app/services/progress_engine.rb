@@ -30,7 +30,7 @@ class ProgressEngine
   def estimated_time_remaining
     steps = %w[welcome assessment documents scheduling complete]
     current_index = steps.index(@user.onboarding_step) || 0
-    remaining_steps = steps[(current_index)..]
+    remaining_steps = steps[(current_index + 1)..]
     remaining_steps.sum { |s| TIME_ESTIMATES[s] || 0 }
   end
 

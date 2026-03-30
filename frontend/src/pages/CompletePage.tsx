@@ -141,9 +141,8 @@ export default function CompletePage({ onDashboard }: CompletePageProps = {}) {
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
-    Promise.all([api.getAffirmation(), api.getResources()])
-      .then(([aff, res]) => { setAffirmation(aff); setResources(res.resources); })
-      .catch(console.error);
+    api.getAffirmation().then(setAffirmation).catch(console.error);
+    api.getResources().then(res => setResources(res.resources)).catch(console.error);
   }, []);
 
   const refreshAffirmation = async () => {

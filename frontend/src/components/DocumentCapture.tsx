@@ -100,16 +100,16 @@ export default function DocumentCapture({ onCapture, documentType = 'ID' }: Docu
           >
             <button
               onClick={startCamera}
-              className="flex flex-col items-center gap-2 p-6 bg-[#e0f7fc] border-2 border-[#00aed9]/30 rounded-xl hover:bg-[#e0f7fc] transition"
+              className="flex flex-col items-center gap-2 p-6 bg-[#e0f7fc] dark:bg-[#00aed9]/10 border-2 border-[#00aed9]/30 rounded-xl hover:bg-[#d0f0f7] dark:hover:bg-[#00aed9]/20 transition"
             >
               <Camera size={32} className="text-[#00aed9]" />
-              <span className="text-sm font-medium text-[#0090b3]">Take Photo</span>
-              <span className="text-xs text-slate-500">Use camera guides</span>
+              <span className="text-sm font-medium text-[#0090b3] dark:text-[#00aed9]">Take Photo</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Use camera guides</span>
             </button>
-            <label className="flex flex-col items-center gap-2 p-6 bg-slate-50 border-2 border-slate-200 rounded-xl hover:bg-slate-100 transition cursor-pointer">
-              <Upload size={32} className="text-slate-600" />
-              <span className="text-sm font-medium text-slate-700">Upload File</span>
-              <span className="text-xs text-slate-500">JPG, PNG, PDF</span>
+            <label className="flex flex-col items-center gap-2 p-6 bg-slate-50 dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-600 transition cursor-pointer">
+              <Upload size={32} className="text-slate-600 dark:text-slate-300" />
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">Upload File</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">JPG, PNG, PDF</span>
               <input
                 type="file"
                 accept="image/*,.pdf"
@@ -195,7 +195,7 @@ export default function DocumentCapture({ onCapture, documentType = 'ID' }: Docu
             <div className="flex gap-2">
               <button
                 onClick={retake}
-                className="flex-1 py-2.5 bg-slate-100 text-slate-700 rounded-lg flex items-center justify-center gap-2 text-sm font-medium hover:bg-slate-200 transition"
+                className="flex-1 py-2.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-600 transition"
               >
                 <RotateCcw size={16} />
                 Retake
@@ -213,7 +213,7 @@ export default function DocumentCapture({ onCapture, documentType = 'ID' }: Docu
       </AnimatePresence>
 
       {feedback && (
-        <div className="flex items-center gap-2 text-sm text-amber-700 bg-amber-50 px-3 py-2 rounded-lg">
+        <div className="flex items-center gap-2 text-sm text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-3 py-2 rounded-lg">
           <AlertTriangle size={14} />
           {feedback}
         </div>
