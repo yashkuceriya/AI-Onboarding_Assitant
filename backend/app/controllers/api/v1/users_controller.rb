@@ -24,7 +24,7 @@ module Api
       private
 
       def user_params
-        params.permit(:name, :phone, :preferred_contact, :onboarding_step, profile_data: {})
+        params.permit(:name, :phone, :preferred_contact)
       end
     end
   end

@@ -1,5 +1,8 @@
 class JwtService
-  SECRET = Rails.application.credentials.secret_key_base || ENV.fetch("SECRET_KEY_BASE", "dev-secret-key")
+  SECRET = Rails.application.credentials.secret_key_base || ENV.fetch("SECRET_KEY_BASE") {
+    raise "SECRET_KEY_BASE must be set" unless Rails.env.test?
+    "test-only-secret-key"
+  }
 
   def self.encode(user_id)
     payload = {

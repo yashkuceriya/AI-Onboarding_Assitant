@@ -2,6 +2,8 @@ class SellOffer < ApplicationRecord
   belongs_to :user
   has_many_attached :photos
 
+  validate :acceptable_photos
+
   enum :status, {
     draft: 0,
     quoted: 1,
@@ -111,6 +113,27 @@ class SellOffer < ApplicationRecord
         completed: i <= status_index,
         current: i == status_index
       }
+    end
+  end
+
+  private
+
+  def acceptable_photos
+    return unless photos.attached?
+
+    photos.each do |photo|
+      unless photo.content_type.in?(%w[image/jpeg image/png image/webp])
+        errors.add(:photos, "must be JPEG, PNG, or WebP")
+        break
+      end
+      if photo.byte_size > 10.megabytes
+        errors.add(:photos, "each must be under 10 MB")
+        break
+      end
+    end
+
+    if photos.count > 20
+      errors.add(:photos, "maximum 20 photos allowed")
     end
   end
 end

@@ -2,6 +2,22 @@ class Document < ApplicationRecord
   belongs_to :user
   has_one_attached :file
 
+  validate :acceptable_file
+
+  private
+
+  def acceptable_file
+    return unless file.attached?
+
+    unless file.content_type.in?(%w[image/jpeg image/png image/webp application/pdf])
+      errors.add(:file, "must be JPEG, PNG, WebP, or PDF")
+    end
+
+    if file.byte_size > 10.megabytes
+      errors.add(:file, "must be under 10 MB")
+    end
+  end
+
   enum :document_type, {
     id_card: 0,
     form: 1,

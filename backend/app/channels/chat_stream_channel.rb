@@ -1,9 +1,14 @@
 class ChatStreamChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "chat_stream_#{params[:conversation_id]}"
+    conversation = current_user.conversations.find_by(id: params[:conversation_id])
+    if conversation
+      stream_from "chat_stream_#{conversation.id}"
+    else
+      reject
+    end
   end
 
   def unsubscribed
-    # Cleanup when channel is unsubscribed
+    stop_all_streams
   end
 end
