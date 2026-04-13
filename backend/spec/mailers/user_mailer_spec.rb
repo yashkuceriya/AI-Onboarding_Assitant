@@ -10,14 +10,14 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.subject).to include("Welcome")
       expect(mail.subject).to include("Jane Doe")
       expect(mail.to).to eq(["jane@example.com"])
-      expect(mail.from).to eq(["noreply@carvana.com"])
+      expect(mail.from).to eq(["noreply@example.com"])
     end
 
     it "includes the user's name in the body" do
       expect(mail.body.encoded).to include("Jane Doe")
     end
 
-    it "includes Carvana branding" do
+    it "includes the platform branding" do
       expect(mail.body.encoded).to include("CARVANA")
       expect(mail.body.encoded).to include("Start Browsing")
     end

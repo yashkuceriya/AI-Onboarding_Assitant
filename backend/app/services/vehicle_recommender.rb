@@ -124,7 +124,7 @@ class VehicleRecommender
 
   def conversational_recommend(user_message, user)
     system = <<~PROMPT
-      You are a Carvana car recommendation assistant. Based on the user's message, extract
+      You are a car recommendation assistant. Based on the user's message, extract
       their vehicle preferences. Be conversational and helpful.
 
       Respond with a brief recommendation (2-3 sentences) followed by:

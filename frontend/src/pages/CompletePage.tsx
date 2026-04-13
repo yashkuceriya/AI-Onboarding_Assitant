@@ -439,7 +439,7 @@ export default function CompletePage({ onDashboard }: CompletePageProps = {}) {
             transition={{ delay: 1.4 }}
             className="text-white font-bold text-xl mb-2"
           >
-            Carvana Guarantee
+            Our Guarantee
           </motion.h3>
 
           <motion.p

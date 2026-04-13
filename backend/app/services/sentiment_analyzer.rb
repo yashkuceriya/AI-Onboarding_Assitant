@@ -6,7 +6,7 @@ class SentimentAnalyzer
       tone: "empathetic and simple",
       additions: [
         "I understand this can be frustrating. Let me simplify things.",
-        "Would you prefer to speak with a Carvana specialist? I can arrange a callback."
+        "Would you prefer to speak with a specialist? I can arrange a callback."
       ]
     },
     "confused" => {
@@ -19,7 +19,7 @@ class SentimentAnalyzer
     "anxious" => {
       tone: "reassuring and supportive",
       additions: [
-        "Remember, Carvana has a 7-day money-back guarantee — no risk involved.",
+        "Remember, the platform has a 7-day money-back guarantee — no risk involved.",
         "Over 10,000 cars are delivered successfully every month."
       ]
     },

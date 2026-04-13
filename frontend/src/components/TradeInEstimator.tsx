@@ -149,7 +149,7 @@ export default function TradeInEstimator() {
               </div>
             </div>
             <p className="text-[11px] text-gray-400 dark:text-gray-500 text-center">
-              Apply this toward your new Carvana purchase to lower your monthly payment.
+              Apply this toward your new purchase to lower your monthly payment.
             </p>
           </motion.div>
         )}

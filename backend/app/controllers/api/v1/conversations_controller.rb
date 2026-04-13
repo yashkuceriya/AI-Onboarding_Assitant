@@ -7,7 +7,7 @@ module Api
         # Create initial system greeting
         greeting = conversation.messages.create!(
           role: :assistant,
-          content: "Hey #{current_user.name}! I'm your Carvana assistant. Let's find you the perfect car. What type of vehicle are you looking for?",
+          content: "Hey #{current_user.name}! I'm your purchase assistant. Let's find you the perfect car. What type of vehicle are you looking for?",
           quick_replies: ["SUV or crossover", "Sedan", "Truck or pickup"]
         )
 

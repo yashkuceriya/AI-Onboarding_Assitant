@@ -185,7 +185,7 @@ User.find_each do |user|
   Notification.where(user: user).delete_all
 
   [
-    { title: "Welcome to Carvana!", body: "Your account is set up. Start browsing thousands of vehicles.", notification_type: "system", icon: "sparkles" },
+    { title: "Welcome!", body: "Your account is set up. Start browsing thousands of vehicles.", notification_type: "system", icon: "sparkles" },
     { title: "Documents Verified", body: "Your driver's license has been verified successfully.", notification_type: "document_status", icon: "file_check" },
     { title: "Price Drop Alert", body: "A vehicle in your favorites just dropped by $1,200!", notification_type: "price_drop", icon: "trending_down", action_url: "/favorites" },
     { title: "Delivery Update", body: "Your vehicle has passed the 150-point inspection.", notification_type: "delivery_update", icon: "truck", action_url: "/delivery" },

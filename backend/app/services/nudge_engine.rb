@@ -23,7 +23,7 @@ class NudgeEngine
       condition: ->(user) {
         !user.complete? && user.created_at < 24.hours.ago
       },
-      message: "You're almost done! Just a few more steps to complete your Carvana purchase.",
+      message: "You're almost done! Just a few more steps to complete your purchase.",
       channel: :email
     },
     {

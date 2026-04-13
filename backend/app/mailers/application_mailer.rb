@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "Carvana <noreply@carvana.com>"
+  default from: "the platform <noreply@example.com>"
   layout 'mailer'
 end
 

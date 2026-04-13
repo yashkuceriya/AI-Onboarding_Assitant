@@ -1,4 +1,4 @@
-# Carvana AI-Powered Onboarding Assistant
+# AI-Powered Onboarding Assistant
 
 Rails 7 API + React 19 SPA.
 

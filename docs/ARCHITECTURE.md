@@ -24,7 +24,7 @@ An AI-powered onboarding assistant that guides users through a complex signup pr
 
 **Structure:**
 ```
-Carvana/
+the platform/
 ├── backend/          # Rails API
 ├── frontend/         # React + TypeScript (Vite)
 └── docs/             # Architecture, decisions, flow docs

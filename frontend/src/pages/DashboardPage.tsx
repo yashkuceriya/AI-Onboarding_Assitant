@@ -275,7 +275,7 @@ export default function DashboardPage({ userName }: Props) {
                   <Bot size={14} className="text-white" />
                 </div>
                 <div>
-                  <div className="font-bold text-sm">Carvana AI</div>
+                  <div className="font-bold text-sm">AI Assistant</div>
                   <div className="text-[10px] text-white/40">Always here to help</div>
                 </div>
               </div>

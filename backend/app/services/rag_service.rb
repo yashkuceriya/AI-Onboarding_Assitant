@@ -57,55 +57,55 @@ class RagService
   def seed_faq_content
     faq_entries = [
       { source: "financing_terms", content: <<~FAQ },
-        Carvana Financing FAQ:
+        the platform Financing FAQ:
         - APR rates range from 3.9% to 27.9% depending on credit score and term length.
         - Loan terms available: 36, 48, 60, and 72 months.
-        - No prepayment penalties on any Carvana loan.
+        - No prepayment penalties on any the platform loan.
         - Down payments can be as low as $0 for qualified buyers.
         - Co-signers are accepted and can help improve loan terms.
         - GAP coverage is available as an add-on during financing.
         - Monthly payments include principal, interest, and any add-on products.
-        - You can refinance your Carvana loan through any bank or credit union.
+        - You can refinance your the platform loan through any bank or credit union.
       FAQ
       { source: "delivery_process", content: <<~FAQ },
-        Carvana Delivery Process:
+        the platform Delivery Process:
         - Free delivery available within your market area.
         - Delivery typically takes 3-7 business days after purchase completion.
         - You can track your delivery status in real-time through your account.
-        - A Carvana advocate will contact you to schedule your delivery window.
+        - A the platform advocate will contact you to schedule your delivery window.
         - Delivery windows are typically 2-hour blocks.
-        - You can pick up from a Carvana vending machine instead of home delivery.
+        - You can pick up from a the platform vending machine instead of home delivery.
         - All vehicles come with a 150-point inspection report.
       FAQ
       { source: "return_policy", content: <<~FAQ },
-        Carvana 7-Day Money-Back Guarantee:
+        the platform 7-Day Money-Back Guarantee:
         - You have 7 days from delivery to return your vehicle for any reason.
         - Returns are completely free with no restocking fees.
         - Mileage limit of 400 miles during the return period.
         - Refund is processed within 3-5 business days of vehicle pickup.
-        - If you financed through Carvana, the loan is fully cancelled.
+        - If you financed through the platform, the loan is fully cancelled.
         - The 7-day period starts the day after delivery.
         - You can exchange for a different vehicle instead of returning.
       FAQ
       { source: "document_requirements", content: <<~FAQ },
-        Required Documents for Carvana Purchase:
+        Required Documents for the platform Purchase:
         - Valid driver's license (not expired, matches state of registration).
         - Proof of insurance (must be active before delivery).
         - Proof of income if financing (recent pay stubs or bank statements).
         - Proof of residence (utility bill or bank statement within 60 days).
         - Trade-in title if applicable (must be in your name, no liens).
-        - Registration will be handled by Carvana in your state.
+        - Registration will be handled by the platform in your state.
         - Temporary tags are provided at delivery; permanent plates arrive by mail.
       FAQ
       { source: "registration_requirements", content: <<~FAQ }
         State Registration Requirements:
-        - Carvana handles all registration and title transfer paperwork.
+        - the platform handles all registration and title transfer paperwork.
         - Sales tax varies by state (0% to 10%+).
         - Some states require emissions testing before registration.
         - California, Colorado, and a few other states have additional fees.
         - Registration fees are included in your total out-the-door price.
         - Temporary tags are valid for 30-90 days depending on state.
-        - If registration is delayed, Carvana will extend your temporary tag.
+        - If registration is delayed, the platform will extend your temporary tag.
       FAQ
     ]
 

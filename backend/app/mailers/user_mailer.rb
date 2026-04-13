@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   def welcome(user)
     @user = user
-    mail to: @user.email, subject: "Welcome to Carvana, #{@user.name}!"
+    mail to: @user.email, subject: "Welcome, #{@user.name}!"
   end
 
   def booking_confirmation(user, appointment)
@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @token = token
     @reset_url = "#{ENV.fetch('FRONTEND_URL', 'http://localhost:4200')}/reset-password?token=#{token}"
-    mail to: @user.email, subject: "Reset your Carvana password"
+    mail to: @user.email, subject: "Reset your the platform password"
   end
 
   def delivery_reminder(user, appointment)

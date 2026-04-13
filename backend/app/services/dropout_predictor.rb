@@ -161,7 +161,7 @@ class DropoutPredictor
     end
 
     if signals[:negative_sentiment] > 0.5
-      actions << { type: "escalate", message: "Would you like to speak with a Carvana specialist? We can arrange a callback." }
+      actions << { type: "escalate", message: "Would you like to speak with a specialist? We can arrange a callback." }
     end
 
     actions
